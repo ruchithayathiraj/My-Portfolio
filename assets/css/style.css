@@ -244,8 +244,8 @@ h6 {
     background: url("../img/image3.jpeg") center;
     background-size: 75%;
     background-position-x: right;
-    -webkit-filter: grayscale(120%); /* Safari 6.0 - 9.0 */
-    filter: grayscale(120%);
+    -webkit-filter: grayscale(50%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(50%);
 }
 
 #hero:before {
