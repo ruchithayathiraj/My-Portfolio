@@ -1,9 +1,5 @@
 /**
-* Template Name: iPortfolio
-* Updated: Jan 29 2024 with Bootstrap v5.3.2
-* Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
+* Template Name: Ruchitha Yathirajulu Portfolio
 */
 
 /*--------------------------------------------------------------
@@ -350,9 +346,9 @@ section {
 # About
 --------------------------------------------------------------*/
 .about .content h3 {
-  font-weight: 700;
-  font-size: 26px;
-  color: #173b6c;
+    font-weight: 700;
+    font-size: 18px;
+    color: #ff0000;
 }
 
 .about .content ul {
