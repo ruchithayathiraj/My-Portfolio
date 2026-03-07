@@ -1,481 +1,1531 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ruchitha Yathirajulu — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <title>Ruchitha Yathirajulu Portfolio</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+    :root {
+      --bg: #080a0f;
+      --bg2: #0d1017;
+      --surface: #111520;
+      --border: #1e2535;
+      --accent: #00e5c0;
+      --accent2: #ff6b35;
+      --text: #e8eaf0;
+      --muted: #7a8299;
+      --font-display: 'Syne', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+      --font-body: 'DM Sans', sans-serif;
+    }
 
-    <!-- Favicons -->
-    <link href="assets/img/image4.png" rel="icon">
-    
+    html { scroll-behavior: smooth; }
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none;
+    }
 
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    /* Custom cursor */
+    .cursor {
+      width: 12px; height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease;
+      mix-blend-mode: difference;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--accent);
+      border-radius: 50%;
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9998;
+      transition: all 0.15s ease;
+      opacity: 0.5;
+    }
 
-    <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet">
+    /* Noise overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9997;
+      opacity: 0.4;
+    }
 
-    <!-- =======================================================
-    * Template Name: Ruchitha Yathirajulu Portfolio
-    ======================================================== -->
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      background: rgba(8,10,15,0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated grid background */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.3;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+    }
+
+    /* Glowing orb */
+    #hero::after {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,229,192,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      top: 50%; left: 30%;
+      transform: translate(-50%, -50%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.7; }
+    }
+
+    .hero-left { position: relative; z-index: 2; }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 24px; height: 1px;
+      background: var(--accent);
+    }
+
+    h1.hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.4s;
+    }
+    h1.hero-name .accent { color: var(--accent); }
+    h1.hero-name .block { display: block; }
+
+    .hero-titles {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.55s;
+    }
+    .hero-title-pill {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--text);
+    }
+    .hero-title-sep {
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.6s;
+    }
+
+    .hero-roles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.7s;
+    }
+    .role-pill {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: var(--muted);
+      background: var(--surface);
+      letter-spacing: 0.05em;
+    }
+    .role-pill.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0,229,192,0.05);
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.8s;
+    }
+    .btn-primary {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.8rem;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      cursor: none;
+      text-decoration: none;
+      font-weight: 400;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: #00ffda; transform: translateY(-2px); }
+    .btn-outline {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.8rem;
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      cursor: none;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-right {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 0.5s;
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      width: 100%;
+      max-width: 420px;
+    }
+    .stat-card {
+      background: var(--bg);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: background 0.2s;
+    }
+    .stat-card:hover { background: var(--surface); }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .stat-card.wide { grid-column: span 2; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ── SECTION STYLES ── */
+    section { padding: 6rem 4rem; }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    .section-num {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      max-width: 200px;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--bg2); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .about-left { position: sticky; top: 7rem; }
+    .about-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(0,229,192,0.3);
+      background: rgba(0,229,192,0.05);
+    }
+    .status-dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .about-name-big {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+    .about-role {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent2);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .about-details { display: flex; flex-direction: column; gap: 0.7rem; }
+    .detail-row {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding-bottom: 0.7rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .detail-key {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      min-width: 70px;
+      padding-top: 0.1rem;
+    }
+    .detail-val {
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .detail-val a { color: var(--accent); text-decoration: none; }
+
+    .about-right {}
+    .about-bio p {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+    }
+    .about-bio p strong { color: var(--text); }
+
+    .strengths-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+    .strength-item {
+      background: var(--bg);
+      padding: 1.5rem;
+      transition: background 0.2s;
+    }
+    .strength-item:hover { background: var(--surface); }
+    .strength-icon {
+      font-size: 1.2rem;
+      margin-bottom: 0.7rem;
+    }
+    .strength-title {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .strength-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--bg); }
+    .exp-timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    .exp-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    .exp-item {
+      position: relative;
+      padding: 0 0 3.5rem 2.5rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .exp-item.visible { opacity: 1; transform: translateX(0); }
+    .exp-dot {
+      position: absolute;
+      left: -2rem;
+      top: 0.4rem;
+      width: 10px; height: 10px;
+      background: var(--bg);
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      transform: translateX(-4px);
+    }
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+    .exp-role {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    .exp-date {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.7rem;
+      border: 1px solid rgba(0,229,192,0.3);
+    }
+    .exp-company {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    .exp-company span { color: var(--accent2); }
+    .exp-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .exp-list li {
+      font-size: 0.875rem;
+      color: var(--muted);
+      padding-left: 1.2rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    .exp-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.75rem;
+    }
+    .exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.8rem;
+    }
+    .exp-tag {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.6rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 2px;
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--bg2); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .skill-category {
+      background: var(--bg);
+      padding: 2rem;
+      transition: background 0.2s;
+    }
+    .skill-category:hover { background: var(--surface); }
+    .skill-cat-title {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .skill-cat-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .skill-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .skill-chip {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.3rem 0.7rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .skill-chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--bg); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .project-card {
+      background: var(--bg);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-card:hover { background: var(--surface); }
+    .project-num {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+    }
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .project-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+      flex: 1;
+    }
+    .project-link {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: gap 0.2s;
+    }
+    .project-link:hover { gap: 0.7rem; }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+    .ptag {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      padding: 0.15rem 0.5rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    /* ── EDUCATION ── */
+    #education { background: var(--bg2); }
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+    .edu-card {
+      background: var(--bg);
+      padding: 2.5rem;
+      transition: background 0.2s;
+    }
+    .edu-card:hover { background: var(--surface); }
+    .edu-degree {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .edu-school {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.3rem;
+    }
+    .edu-period {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+    .edu-gpa {
+      display: inline-block;
+      margin-top: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid rgba(0,229,192,0.3);
+      color: var(--accent);
+      background: rgba(0,229,192,0.05);
+    }
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .cert-card {
+      background: var(--bg);
+      padding: 1.5rem;
+      transition: background 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .cert-card:hover { background: var(--surface); }
+    .cert-title {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+    .cert-valid {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+    .cert-link {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+    .cert-link:hover { text-decoration: underline; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--bg); }
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .contact-left h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .contact-left h2 span { color: var(--accent); }
+    .contact-left p {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 420px;
+    }
+    .contact-items { display: flex; flex-direction: column; gap: 0; }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      transition: padding-left 0.2s;
+    }
+    .contact-item:hover { padding-left: 0.5rem; }
+    .contact-icon {
+      width: 40px; height: 40px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .contact-item:hover .contact-icon {
+      border-color: var(--accent);
+      background: rgba(0,229,192,0.05);
+    }
+    .contact-info-label {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .contact-info-val {
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .contact-right {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 3rem;
+    }
+    .contact-right h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+    .form-row { margin-bottom: 1.5rem; }
+    .form-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .form-input, .form-textarea {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 0.8rem 1rem;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: none;
+    }
+    .form-input:focus, .form-textarea:focus { border-color: var(--accent); }
+    .form-textarea { min-height: 100px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-name {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+    .footer-copy {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+    .footer-socials { display: flex; gap: 1rem; }
+    .footer-social {
+      width: 36px; height: 36px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.8rem;
+      transition: all 0.2s;
+    }
+    .footer-social:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; gap: 3rem; }
+      .hero-right { display: none; }
+      section { padding: 4rem 2rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-left { position: static; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 3rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+    }
+
+    /* publication section */
+    .pub-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .pub-card:hover { border-color: var(--accent); }
+    .pub-year {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      white-space: nowrap;
+      padding-top: 0.2rem;
+      letter-spacing: 0.08em;
+    }
+    .pub-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .pub-venue {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+    .pub-link {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+  </style>
 </head>
-
 <body>
 
-    <!-- ======= Mobile nav toggle button ======= -->
-    <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-    <!-- ======= Header ======= -->
-    <header id="header">
-        <div class="d-flex flex-column">
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">RY<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-            <div class="profile">
-                <img src="assets/img/image1.jpeg" alt="" class="img-fluid rounded-circle">
-                <h1 class="text-light"><a href="index.html">Ruchitha Yathirajulu</a></h1>
-                <div class="social-links mt-3 text-center">
-
-                    <a href="https://www.linkedin.com/in/ruchitha-yathirajulu-b87555191/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                    
-                </div>
-            </div>
-
-            <nav id="navbar" class="nav-menu navbar">
-                <ul>
-                    <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-                    <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-                    <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
-                    <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
-                </ul>
-            </nav><!-- .nav-menu -->
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left">
+      <div class="hero-tag">Available for opportunities</div>
+      <h1 class="hero-name">
+        <span class="block">Ruchitha</span>
+        <span class="block accent">Yathirajulu</span>
+      </h1>
+      <p class="hero-desc">
+        Engineer turned Analyst. Bridging data, systems, technology, projects and strategy. Based in <strong>Ottawa, Canada</strong> — open to relocate across Canada.
+      </p>
+      <div class="hero-roles">
+        <span class="role-pill active">Business Analyst</span>
+        <span class="role-pill active">Project Analyst</span>
+        <span class="role-pill active">Data Analyst</span>
+        <span class="role-pill">PMO Coordinator</span>
+      </div>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn-primary">Get in touch</a>
+        <a href="#experience" class="btn-outline">View experience</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-number">2+</div>
+          <div class="stat-label">Years Industry Exp.</div>
         </div>
-    </header><!-- End Header -->
-    <!-- ======= Hero Section ======= -->
-    <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
-        <div class="hero-container" data-aos="fade-in">
-            <h1><b> Ruchitha Yathirajulu </b></h1>
-            <p><b>Interested In:</b> <br /><span class="typed" data-typed-items="Business Analyst <br> Business System Analyst <br> Data Engineer <br> Project Engineer/Analyst/Coordinator <br>"><br /></span></p>
+        <div class="stat-card">
+          <div class="stat-number">3.5</div>
+          <div class="stat-label">Master's GPA</div>
         </div>
-    </section><!-- End Hero -->
-
-    <main id="main">
-
-        <!-- ======= About Section ======= -->
-        <section id="about" class="about">
-            <div class="container">
-
-                <div class="section-title">
-                    <h2>About</h2>
-
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-4" data-aos="fade-right">
-                        <img src="assets/img/image2.jpeg" class="img-fluid" alt="">
-                    </div>
-                    <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-                        <center> <h3>Currently based in Ottawa, Ontario, with an open Post-Graduation Work Permit (PGWP) valid until November 3, 2028, and willing to relocate across Canada for the right opportunity</h3></center>
-
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <ul>
-                                    <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>23 June 1999</span></li>
-                                    <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+343 558 9542</span></li>
-                                    <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Ottawa, Canada</span></li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-6">
-                                <ul>
-
-                                    <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Master of Engineering</span></li>
-                                    <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>yathirajuluruchitha@gmail.com</span></li>
-
-                                </ul>
-                            </div>
-                        </div>
-                        <p align="justify">
-                            Hello, I'm Ruchitha Yathirajulu a dedicated and versatile engineer with a Master's in Electrical and Computer Engineering from the University of Ottawa. My academic journey began with a Bachelor's in Electronics and Communication Engineering from Visveswaraya Technological University, India.<br /><br />
-                            Experienced Analyst with hands-on experience supporting business analysis, project delivery, and PMO-style initiatives across financial services, technology, and data-driven environments. </br>
-I specialize in requirements gathering, documentation, data analysis, and stakeholder coordination, working closely with business and technical teams to support projects from planning through delivery. My experience includes translating business needs into clear user stories and requirements, preparing status reports and dashboards, and supporting project tracking, testing, and release activities.</br>
-
-Key strengths I bring to teams:
-<ul>
-<li align="justify"> Business analysis: requirements elicitation, process mapping, user stories, BRDs, and UAT support</li>
-
-<li align="justify">Project & PMO support: scheduling, status reporting, risk/issue tracking, documentation, and coordination</li>
-
-<li align="justify">Data & reporting: Excel-based analysis, dashboards, KPIs, and decision-support reporting</li>
-
-<li align="justify">Stakeholder collaboration: clear communication with project managers, developers, QA, and business users</li>
-</ul>
-
-With a Master’s in Computer Engineering and prior experience as a Business Systems Analyst and Data Engineer, I combine strong analytical skills with technical fluency, enabling me to work effectively on projects involving systems, data, and IT components.</br>
-
-I’m currently seeking full-time roles where I can contribute as a:
-Business Analyst | Project Analyst | PMO / Project Coordinator | Data Analyst
-                    </br>
-I’m always open to connecting with professionals, recruiters, and teams working on impactful projects.
-                        </p>
-                            
-                            
-                    </div>
-                </div>
-
-            </div>
-        </section><!-- End About Section -->
-        <!-- ======= Resume Section ======= -->
-        <section id="resume" class="resume">
-            <div class="container">
-
-                <div class="section-title">
-                    <h2>Resume</h2>
-                    <!--p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-                -->
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6" data-aos="fade-up">
-                        
-
-                        <h3 class="resume-title">Education</h3>
-                        <div class="resume-item">
-                            <h4>Master of Engineering in Electrical and Computer Engineering</h4>
-                            <h5>Sept 2023 - Apr 2025</h5>
-                            <p><em>University of Ottawa, Ottawa, Ontario, Canada</em></p>
-                            <p> <B>GPA:</B> 3.5 </p>
-                            <!--
-                           <p><b>Skills Acquired:</b> Software Validation, Integrated Database Systems, Data Science Applications, Product Development and Management, Data Visualization.</p>-->
-                        </div>
-                        <div class="resume-item">
-                            <h4>Bachelor of Engineering in Electronics and Communication Engineering</h4>
-                            <h5>Aug 2017 - Aug 2021</h5>
-                            <p><em>Visveswaraya Technological University, Bangalore, India</em></p>
-                            <p> <B>GPA:</B> 3.58 </p>
-                        </div>
-
-                         <h3 class="resume-title">Certifications</h3>
-
-                        <div class="resume-item">
-                            <h4>Project Management Professional - PMP</h4>
-                            <h5>Target : March 2025</h5>
-                             
-
-                        </div>
-
-                         <div class="resume-item">
-                            <h4>SQL Associate - DataCamp</h4>
-                            <h5>Valid until Nov 2027</h5>
-                             <a href="https://www.datacamp.com/certificate/SQA0011474493706"><i>Link to Certificate</i></a>
-
-                        </div>
-                        <div class="resume-item">
-                            <h4>Alteryx Designer Core Certified</h4>
-                            <h5>Valid until Nov 2027</h5>
-                            <a href="https://www.credly.com/badges/078920cf-f8fa-4c87-ba0f-6d4e839fcf81/embedded"><i>Link to Certificate</i></a>
-                        </div>
-                        <div class="resume-item">
-                            <h4>PL-300 – Microsoft Certified: Power BI Data Analyst Associate</h4>
-                            <h5>Valid until Nov 2027</h5>
-                            <a href="https://learn.microsoft.com/en-us/users/ruchithayathirajulu-2608/credentials/a085113974755af3"><i>Link to Certificate</i></a>
-
-                        </div>
-
-                        
-
-                         <h3 class="resume-title">Technical Skills</h3>
-                        <div class="resume-item">
-                            <ul>
-                                <li align="justify"><b>Programming Languages:</b> C++, Python, SQL </li>
-                                <li align="justify"><b>Development Tools:</b> MS SQL Server, Snowflake, Microsoft Office Tools, Azure DevOps</li>
-                                <li align="justify"><b>Data Visualization Tools:</b> Rviz (Robot Visualization), Power BI, Tableau </li>
-                                <li align="justify"><b>ETL Tools: SSRS, SSIS, Informatica</b></li>
-                                <li align="justify"><b>Project Management Software:</b> MS Project, Wrike, SharePoint, Jira, Mural, Confluence, MS Visio, exposure to Smartsheets</li>
-                                <li align="justify"><b>Operating Systems:</b> Windows, Linux, ROS (Robot Operating System)</li>
-                                <li align="justify"><b>Soft Skills:</b> Leadership, time management, written and verbal communication skills, problem-solving skills, interpersonal skills, cross-functional collaboration, self-motivated attitude with strong attention to detail</li>
-                            </ul>
-
-                        </div>
-
-
-
-                        <h3 class="resume-title">Projects</h3>
-
-                        <div class="resume-item">
-                            <h4>Executive Power BI Dashboard Project - Capstone Case Study, Tailwind Traders | <a href="https://app.powerbi.com/view?r=eyJrIjoiMTM5MjRiODgtMmY5MC00YWVhLWE5MWEtMjlkMjMzNzBmOWUxIiwidCI6ImQ0MWZkYWIxLTdlMTUtNGNmZC1iNWZhLTcyMDBlNTRkZWI2YiJ9"><i>Dashboard Link</i></a></h4>
-                            <ul>
-                                <li align="justify">Designed an executive-level Power BI dashboard to analyze sales performance and profitability, focusing on gross vs net revenue and profit margins.</li>
-                                <li align="justify">Built two interactive dashboards: a Sales Overview highlighting customer behavior and median sales, and a Profit Overview tracking YTD profit margin and revenue trends.</li>
-                                <li align="justify">Implemented data modeling and DAX measures (profit margin, QTD/YTD calculations, median sales) to enable accurate time-based analysis.</li>
-                                <li align="justify">Delivered actionable insights for leadership, revealing the impact of taxes on net revenue and providing clear visibility into sales and profitability trends.</li>
-                            </ul>
-                            
-                        </div>
-
-                        <div class="resume-item">
-                            <h4>Radar Integration & Data Collection For Aautonomous Vehicle | <a href="https://github.com/ruchithayathiraj/ARS_408_21"><i>Github Link</i></a></h4>
-                            <ul>
-                                <li align="justify">Installed a radar sensor (ARS 408-21) on an autonomous vehicle pod, configured low-level software on Linux to collect CAN data.</li>
-                                <li align="justify">Designed & executed quantitative data collection & visualization workflows using C++ and Python to support parameter tuning, validation, and performance analysis.</li>
-                                <li align="justify">Executed real-world testing across various scenarios, authored test cases for multi-vehicle detection, occlusion handling, and human detection.</li>
-                                <li align="justify">Collaborated closely with senior engineers, communicating findings, progress updates, insights & incorporating feedback to refine testing approaches.</li>
-                                <li align="justify">Tracked tasks, sprint progress, and milestones using Trello, and maintained ROS workflows and code in GitHub.
-                            </ul>
-                            
-                        </div>
-
-
-                            
-
-                        <div class="resume-item">
-                            <h4>My first portfolio website</h4>
-                            <ul>
-                                <li align="justify">Independently designed and developing a professional personal portfolio website.</li>
-                                <li align="justify">Utilized HTML, CSS, and Bootstrap to craft an interactive and visually appealing user interface.</li>
-                                <li align="justify">Incorporated personalized elements to showcase skills, projects, and a brief bio.</li>
-                                <li align="justify">Regularly updating and maintaining the website to reflect ongoing projects and skills development.</li>
-                            </ul>
-                        </div>
-
-
-
-
-                        <div class="resume-item">
-                            <h4>Solar Energy For RPI in Remote Areas</h4>
-                            <h5>Aug 2020 - Jul 2021</h5>
-                            <ul>
-                                <li align="justify">The primary objective was to significantly decrease the power consumption of the Raspberry Pi (RPI) when compared to its idle state.</li>
-                                <li align="justify">This innovative approach involved the integration of advanced sensors and solar panels, serving as an energy-efficient alternative to conventional methods.</li>
-                                <li align="justify">The overarching aim was to meticulously design and develop a specialized board that not only achieved the immediate goal but also laid a robust foundation for future research endeavors and technological advancements.</li>
-                            </ul>
-                        </div>
-                        <div class="resume-item">
-                            <h4>Obstracle detecting Robot</h4>
-                            <ul>
-                                <li align="justify">Designed a robot that employs ultrasonic sensors to detect obstacles in its forward path, enabling it to avoid collisions.</li>
-                                <li align="justify">The Arduino program includes instructions for measuring the distance between the robot and the sensor. If an obstacle is detected, the robot will change its direction. This operation is based on the principles of Artificial Intelligence.</li>
-                            </ul>
-                        </div>
-                        <div class="resume-item">
-                            <h4>Bluetooth Controlled Robot </h4>
-                            <ul>
-                                <li align="justify">Designed a Bluetooth-controlled car for versatile terrain traversal involves Arduino programs that mediate communication between an Android controller and the car.</li>
-                                <li align="justify">The Android controller employs mobile sensors to supervise car motion, all built around IoT principles.</li>
-                            </ul>
-                        </div>
-
-                         <h3 class="resume-title">Publications</h3>
-                        <div class="resume-item">
-                            <h4>SOLAR ENERGY FOR RPI IN REMOTE AREAS</h4>
-                            <h5> Aug 2020 - Jul 2022</h5>
-                            <p>
-                                <em>
-                                    Web of Science indexed journal “VB International interdisciplinary research journal (ISSN: 2319-4979)”,<br />Part 5, Page No pp.1797-1804, Aug 2021.<br />
-                                    Available at: <a href="http://www.viirj.org/specialissues/SP10/SP10.html">http://www.viirj.org/specialissues/SP10/SP10.html</a>
-
-                                </em>
-                            </p>
-
-                        </div>
-
-                    </div>
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                        <h3 class="resume-title">Professional Experience</h3>
-                         <div class="resume-item">
-                            <h4>Project Manager & Teaching Assistant</h4>
-                            <h5>Sept 2023 - April 2025</h5>
-                            <p><em>University of Ottawa, Ottawa, Ontario, Canada </em></p>
-                            <ul>
-                                <li align="justify">Led 25+ cross-functional student teams across multiple software engineering capstone projects; prioritized deliverables, resolved 30+ features & bugs, and guided teams through core SDLC to achieve 95% on-time completion using Microsoft Project.</li>
-                                <li align="justify">Led weekly design engineering workshops, developed PowerPoint presentations, and coordinated MS Teams meetings to enhance team collaboration and participation. </li>
-                                <li align="justify">Developed and implemented project plans, including scope, budget, and timeline, resulting in a 15% reduction in project costs and 30% improvement in project efficiency. </li>
-                                <li align="justify">Conducted regular project progress meetings, providing timely updates to senior technical staff/project managers, and supported communication across all project stakeholders and project teams. </li>
-                                <li align="justify">Established quality management protocols, covering code reviews and coding standards, reducing defects by 25% and boosting software reliability.</li>
-                                <li align="justify">Utilized Agile and Jira for project scheduling and progress tracking, with MS Word for documenting status reports and created a reporting template that reduced preparation time for meeting materials by 80%.</li>
-                                <p align="justify"><b>Technical Skills:</b> MS Project, Agile methodology, Jira, MS Teams, MS PowerPoint, MS Word, Project Planning, Resource Management, SDLC, Quality Management, Code Review Standards</p>
-                            </ul>
-                        </div>
-                         <div class="resume-item">
-                            <h4>Business System Analyst Intern</h4>
-                            <h5>May 2024 - Dec 2024</h5>
-                            <p><em>Alberta Investment Management Corporation, Toronto, Ontario, Canada </em></p>
-                            <ul>
-                                <li align="justify">Performed business and financial analysis, optimized processes, and automated workflows in Simcorp Dimension, cutting manual effort by 99% and speeding report delivery by 80%, improving performance management. </li>
-                                <li align="justify">Defined project scopes and mapped business processes, translating technical specifications into deliverables using MS Visio for process modeling, which strengthened stakeholder collaboration and teamwork. </li>
-                                <li align="justify">Developed and tracked 40+ user stories, led 25+ Agile sprint ceremonies in Azure DevOps and Jira, enabling 50% faster issue resolution through improved troubleshooting and documentation. </li>
-                                <li align="justify">Built Excel reports (advanced formulas, VBA) and Power BI dashboards, increasing actionable insights by 25%; implemented SharePoint document controls for organization-wide access. </li>
-                                <li align="justify">Coordinated QA/UAT testing, managed release cycles and notes, developed use cases, elicited requirements, and authored user manuals, workflows, and troubleshooting guides in Confluence. </li>
-                                <li align="justify">Led regular project status meetings, delivering timely updates to senior management and stakeholders, increasing transparency and communication efficiency by 50% across all participants. </li>
-                                <p align="justify"><b>Technical Skills:</b> SimCorp, Data Analysis, Business Workflow Automation, MS Visio, Agile Methodology, Azure DevOps Server, Jira, Excel (Advanced Formulas), Power BI, SharePoint, QA/UAT Testing, Confluence, Project Status Reporting</p>
-                            </ul>
-                        </div>
-                        <div class="resume-item">
-                            <h4>Student Intern - Autonomous Driving Systems</h4>
-                            <h5>Jan 2024 - April 2024</h5>
-                            <p><em>Aurrigo Canada Limited, Ottawa, Ontario, Canada </em></p>
-                            <ul>
-                                <li align="justify">Installed and configured radar sensor on Linux for an autonomous vehicle; led data collection and integrated data pipelines with C++ and Python to support AI in perception and navigation. </li>
-                                <li align="justify">Visualized large radar data using Rviz, enhancing multi-vehicle detection in diverse weather and improving sensor accuracy and software testing. </li>
-                                <li align="justify">Documented and version-controlled ROS projects on GitHub, maintaining workflows and documentation to support team collaboration. </li>
-                                <li align="justify">Managed project tasks and tracked issues using Jira, ensuring smooth sprint planning and progress visibility.</li>
-                                <li align="justify">Collaborating within the team to implement radar technology in autonomous vehicles, enhancing skills in data collection, analysis, and visualization.</li>
-                                <p align="justify"><b>Technical Skills:</b> C++, Linux, Python, CAN, GitHub, Visual Studio Code, ROS, Rviz, Software Development</p>
-                            </ul>
-                        </div>
-                        <div class="resume-item">
-                            <h4>Student Outreach Co-ordinator</h4>
-                            <h5>Sep 2023 - Dec 2024</h5>
-                            <p><em>University of Ottawa, Canada</em></p>
-                            <ul>
-                                <li align="justify">Coordinated mock interview sessions and provided personalized feedback, managing planning, scheduling and resource allocation, resulting in 30% increase in session participation and engagement.</li>
-                                <li align="justify">Bridged communication between students and employers, analyzing industry trends and skill demands to match candidates effectively.</li>
-                                <li align="justify">Recruited students for projects, aligning candidates with client needs using analytical and organizational skills, supported by market research.</li>
-                                <li align="justify">Facilitated resume workshops using MS Word, trained staff on review techniques, and prepared reports summarizing outcomes and recommendations. </li>
-                                <li align="justify">Partnered with senior club leaders to plan and execute events, showcasing event management, teamwork, and cross-functional communication.</li>
-                                <li align="justify">Maintained project documentation and supported fundraising using Google sheets to track progress, budgets, and outcomes for reporting.</li>
-                                <p align="justify"><b>Technical Skills:</b>Resource Management, Project Planning, Scheduling Tools, Data Analysis, MS Word, Google Sheets, Event Management, Stakeholder Communication, Market Research, Report Preparation.</p>
-                            </ul>
-                        </div>
-                        <div class="resume-item">
-                            <h4>Data Engineer</h4>
-                            <h5>Aug 2021 - Aug 2023</h5>
-                            <p><em>Sonata Software Private Limited, India</em></p>
-                            <ul>
-                                <li align="justify">
-                                    Managed database development and ETL workflows, designing relational data models with 100+ columns for large data sets, ensuring adherence to data governance standards and compliance. 
-                                </li>
-                                <li align="justify">Built Power BI dashboards and improved SSRS report and Excel spreadsheet efficiency by 15%. </li>
-                                <li align="justify">Proficient in data manipulation using SQL as well experienced in querying stored procedures, common table expressions, pivoting etc.</li>
-                                <li align="justify">Optimized SQL queries and stored procedures, boosting data processing speed by 25%. </li>
-                                <li align="justify">Collaborated with the Business Intelligence (BI) team to enhance SSRS reports and Excel spreadsheets up to 15% for efficient data processing. </li>
-                                <li align="justify">Proficient in Azure DevOps Server for streamlined project management and collaboration through slack and Jira.</li>
-                                <p align="justify"><b>Technical Skills:</b>R, T-SQL/SQL, MS SQL Server, Snowflake, SSRS, SSIS, Informatica – ETL Tool, Excel Reporting, PostgreSQL, Power BI, Jira</p>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section><!-- End Resume Section -->
-        <!-- ======= Contact Section ======= -->
-        <section id="contact" class="contact">
-            <div class="container">
-
-                <div class="section-title">
-                    <h2>Contact</h2>
-                </div>
-
-                <div class="row" data-aos="fade-in">
-
-                    <div class="col-lg-6 d-flex align-items-stretch">
-                        <div class="info">
-                            <div class="address">
-                                <i class="bi bi-geo-alt"></i>
-                                <h4>Location:</h4>
-                                <p>1545 Alta vista Drive, Ottawa, Canada</p>
-                            </div>
-
-                            <div class="email">
-                                <i class="bi bi-envelope"></i>
-                                <h4>Email:</h4>
-                                <div class="email-item">
-                                   <a href="mailto:yathirajuluruchitha@gmail.com">
-                                   <span>yathirajuluruchitha@gmail.com</span>
-                                   </a>
-                                </div>
-                            </div> <br />
-
-                            <div class="phone">
-                                <i class="bi bi-phone"></i>
-                                <h4>Call:</h4>
-                                <p>+1 343 558 9542</p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-lg-6 d-flex align-items-stretch">
-                        <div class="info">
-
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.981959229708!2d-75.66055722492615!3d45.40970337107304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce05867bad5a8d%3A0xa88abe16e0c43e27!2s1545%20Alta%20Vista%20Dr%2C%20Ottawa%2C%20ON%20K1G%203P4!5e0!3m2!1sen!2sca!4v1762619539732!5m2!1sen!2sca" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-
-                    </div>
-
-                  
-
-                </div>
-
-            </div>
-        </section><!-- End Contact Section -->
-
-    </main><!-- End #main -->
-    <!-- ======= Footer ======= -->
-   <footer id="footer">
-        <div class="container">
-            <div class="copyright">
-                <strong><span>Ruchitha Yathirajulu</span></strong>
-            </div>
-            <div class="credits">
-               
-            </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Certifications</div>
         </div>
-    </footer><!-- End  Footer -->
+        <div class="stat-card">
+          <div class="stat-number">25+</div>
+          <div class="stat-label">Teams Led</div>
+        </div>
+        <div class="stat-card wide">
+          <div class="stat-number" style="font-size:1.4rem; color: var(--text)">Open PGWP — valid until Nov 2028</div>
+          <div class="stat-label">Authorized to work anywhere in Canada</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header reveal">
+      <span class="section-num">01</span>
+      <h2 class="section-title">About</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-left reveal">
+        <div class="about-status">
+          <span class="status-dot"></span>
+          Open to work · Ottawa, ON
+        </div>
+        <div class="about-name-big">Ruchitha<br>Yathirajulu</div>
+        <div class="about-role">Engineer · Analyst · Strategist</div>
+        <div class="about-details">
+          <div class="detail-row">
+            <span class="detail-key">Location</span>
+            <span class="detail-val">Ottawa, Ontario, Canada</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Email</span>
+            <span class="detail-val"><a href="mailto:yathirajuluruchitha@gmail.com">yathirajuluruchitha@gmail.com</a></span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Phone</span>
+            <span class="detail-val">+1 343 558 9542</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Degree</span>
+            <span class="detail-val">M.Eng. Electrical & Computer Engineering</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">LinkedIn</span>
+            <span class="detail-val"><a href="https://www.linkedin.com/in/ruchitha-yathirajulu-b87555191/" target="_blank">linkedin.com/in/ruchitha-yathirajulu</a></span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Status</span>
+            <span class="detail-val">PGWP · Valid Nov 2028 · Open to relocate</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-right reveal">
+        <div class="about-bio">
+          <p>
+            I'm a <strong>dedicated analyst and engineer</strong> with a Master's in Electrical and Computer Engineering from the University of Ottawa. My career spans data engineering, business analysis, autonomous driving systems, and project management — always at the intersection of technology and strategy.
+          </p>
+          <p>
+            At <strong>Alberta Investment Management Corporation</strong>, I automated financial workflows cutting manual effort by 99%. At <strong>Aurrigo Canada</strong>, I integrated radar sensors into autonomous vehicles. As a <strong>Project Manager & Teaching Assistant</strong> at uOttawa, I led 25+ cross-functional teams to a 95% on-time delivery rate.
+          </p>
+          <p>
+            I translate complex technical systems into clear business language — and I'm seeking roles where I can do exactly that, whether as a Business Analyst, Project Analyst, or Data Analyst.
+          </p>
+        </div>
+        <div class="strengths-grid">
+          <div class="strength-item">
+            <div class="strength-icon">📋</div>
+            <div class="strength-title">Business Analysis</div>
+            <div class="strength-desc">Requirements elicitation, user stories, BRDs, process mapping, UAT support</div>
+          </div>
+          <div class="strength-item">
+            <div class="strength-icon">🗂️</div>
+            <div class="strength-title">Project & PMO</div>
+            <div class="strength-desc">Scheduling, status reporting, risk tracking, cross-team coordination</div>
+          </div>
+          <div class="strength-item">
+            <div class="strength-icon">📊</div>
+            <div class="strength-title">Data & Reporting</div>
+            <div class="strength-desc">Excel, Power BI, SQL, KPI dashboards, decision-support reports</div>
+          </div>
+          <div class="strength-item">
+            <div class="strength-icon">🤝</div>
+            <div class="strength-title">Stakeholder Collab</div>
+            <div class="strength-desc">Clear communication across PMs, developers, QA, and business users</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Vendor JS Files -->
-    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/typed.js/typed.umd.js"></script>
-    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="exp-timeline">
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-header">
+          <div class="exp-role">Business Systems Analyst Intern</div>
+          <div class="exp-date">May 2024 – Dec 2024</div>
+        </div>
+        <div class="exp-company">Alberta Investment Management Corporation · <span>Toronto, Ontario</span></div>
+        <ul class="exp-list">
+          <li>Automated workflows in Simcorp Dimension, cutting manual effort by 99% and speeding report delivery by 80%</li>
+          <li>Developed and tracked 40+ user stories; led 25+ Agile sprint ceremonies enabling 50% faster issue resolution</li>
+          <li>Built Power BI dashboards and Excel reports (advanced formulas, VBA), increasing actionable insights by 25%</li>
+          <li>Coordinated QA/UAT testing, managed release cycles, authored user manuals and troubleshooting guides in Confluence</li>
+          <li>Defined project scopes and mapped business processes using MS Visio for process modeling</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">SimCorp</span><span class="exp-tag">Azure DevOps</span><span class="exp-tag">Power BI</span>
+          <span class="exp-tag">Jira</span><span class="exp-tag">Confluence</span><span class="exp-tag">Agile</span>
+          <span class="exp-tag">SharePoint</span><span class="exp-tag">UAT</span>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-header">
+          <div class="exp-role">Project Manager & Teaching Assistant</div>
+          <div class="exp-date">Sept 2023 – Apr 2025</div>
+        </div>
+        <div class="exp-company">University of Ottawa · <span>Ottawa, Ontario</span></div>
+        <ul class="exp-list">
+          <li>Led 25+ cross-functional student teams through SDLC; achieved 95% on-time delivery using MS Project</li>
+          <li>Developed project plans including scope, budget, and timeline — 15% reduction in costs, 30% improvement in efficiency</li>
+          <li>Established quality protocols covering code reviews, reducing defects by 25%</li>
+          <li>Created a reporting template reducing meeting material prep time by 80%</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">MS Project</span><span class="exp-tag">Agile</span><span class="exp-tag">Jira</span>
+          <span class="exp-tag">SDLC</span><span class="exp-tag">Resource Management</span>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-header">
+          <div class="exp-role">Student Intern — Autonomous Driving Systems</div>
+          <div class="exp-date">Jan 2024 – Apr 2024</div>
+        </div>
+        <div class="exp-company">Aurrigo Canada Limited · <span>Ottawa, Ontario</span></div>
+        <ul class="exp-list">
+          <li>Installed and configured radar sensor (ARS 408-21) on Linux for autonomous vehicle; integrated data pipelines in C++ and Python</li>
+          <li>Visualized radar data using Rviz, enhancing multi-vehicle detection across diverse weather conditions</li>
+          <li>Managed sprint tasks and issue tracking using Jira; version-controlled ROS projects on GitHub</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">C++</span><span class="exp-tag">Python</span><span class="exp-tag">ROS</span>
+          <span class="exp-tag">Linux</span><span class="exp-tag">Rviz</span><span class="exp-tag">GitHub</span>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-header">
+          <div class="exp-role">Student Outreach Coordinator</div>
+          <div class="exp-date">Sept 2023 – Dec 2024</div>
+        </div>
+        <div class="exp-company">University of Ottawa · <span>Ottawa, Ontario</span></div>
+        <ul class="exp-list">
+          <li>Coordinated mock interview sessions; 30% increase in session participation through improved planning and scheduling</li>
+          <li>Facilitated resume workshops and trained staff on review techniques; prepared outcome reports for leadership</li>
+          <li>Bridged communication between students and employers through market research and candidate matching</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">Event Management</span><span class="exp-tag">MS Word</span><span class="exp-tag">Google Sheets</span>
+          <span class="exp-tag">Stakeholder Communication</span>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-header">
+          <div class="exp-role">Data Engineer</div>
+          <div class="exp-date">Aug 2021 – Aug 2023</div>
+        </div>
+        <div class="exp-company">Sonata Software Private Limited · <span>India</span></div>
+        <ul class="exp-list">
+          <li>Designed relational data models with 100+ columns for large datasets; ensured data governance compliance</li>
+          <li>Optimized SQL queries and stored procedures, boosting data processing speed by 25%</li>
+          <li>Built Power BI dashboards; improved SSRS reports and Excel efficiency by 15%</li>
+          <li>Proficient in Snowflake, SSIS, Informatica ETL pipelines</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">SQL</span><span class="exp-tag">Snowflake</span><span class="exp-tag">Power BI</span>
+          <span class="exp-tag">SSRS</span><span class="exp-tag">SSIS</span><span class="exp-tag">Informatica</span>
+          <span class="exp-tag">PostgreSQL</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script> -->
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-header reveal">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-category">
+        <div class="skill-cat-title">Languages</div>
+        <div class="skill-items">
+          <span class="skill-chip">Python</span>
+          <span class="skill-chip">SQL / T-SQL</span>
+          <span class="skill-chip">C++</span>
+          <span class="skill-chip">R</span>
+          <span class="skill-chip">VBA</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">Data & BI</div>
+        <div class="skill-items">
+          <span class="skill-chip">Power BI</span>
+          <span class="skill-chip">Tableau</span>
+          <span class="skill-chip">Excel (Advanced)</span>
+          <span class="skill-chip">SSRS</span>
+          <span class="skill-chip">Rviz</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">Databases & ETL</div>
+        <div class="skill-items">
+          <span class="skill-chip">MS SQL Server</span>
+          <span class="skill-chip">Snowflake</span>
+          <span class="skill-chip">PostgreSQL</span>
+          <span class="skill-chip">SSIS</span>
+          <span class="skill-chip">Informatica</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">Project Tools</div>
+        <div class="skill-items">
+          <span class="skill-chip">Jira</span>
+          <span class="skill-chip">Azure DevOps</span>
+          <span class="skill-chip">MS Project</span>
+          <span class="skill-chip">Confluence</span>
+          <span class="skill-chip">SharePoint</span>
+          <span class="skill-chip">Mural</span>
+          <span class="skill-chip">Wrike</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">Engineering</div>
+        <div class="skill-items">
+          <span class="skill-chip">SimCorp Dimension</span>
+          <span class="skill-chip">ROS</span>
+          <span class="skill-chip">Linux</span>
+          <span class="skill-chip">CAN Bus</span>
+          <span class="skill-chip">GitHub</span>
+          <span class="skill-chip">VS Code</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">Soft Skills</div>
+        <div class="skill-items">
+          <span class="skill-chip">Requirements Elicitation</span>
+          <span class="skill-chip">Process Mapping</span>
+          <span class="skill-chip">UAT</span>
+          <span class="skill-chip">Cross-functional Collab</span>
+          <span class="skill-chip">Leadership</span>
+          <span class="skill-chip">Agile / Scrum</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header reveal">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Projects</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-grid reveal">
+      <div class="project-card">
+        <div class="project-num">001</div>
+        <div class="project-title">Executive Power BI Dashboard — Tailwind Traders</div>
+        <div class="project-desc">Designed an executive-level dashboard analyzing sales performance and profitability. Built interactive Sales Overview and Profit Overview panels with DAX measures for QTD/YTD calculations and median sales. Revealed the impact of taxes on net revenue for leadership decision-making.</div>
+        <div class="project-tags">
+          <span class="ptag">Power BI</span><span class="ptag">DAX</span><span class="ptag">Data Modeling</span>
+        </div>
+        <a href="https://app.powerbi.com/view?r=eyJrIjoiMTM5MjRiODgtMmY5MC00YWVhLWE5MWEtMjlkMjMzNzBmOWUxIiwidCI6ImQ0MWZkYWIxLTdlMTUtNGNmZC1iNWZhLTcyMDBlNTRkZWI2YiJ9" target="_blank" class="project-link">View Dashboard →</a>
+      </div>
+      <div class="project-card">
+        <div class="project-num">002</div>
+        <div class="project-title">Radar Integration for Autonomous Vehicle</div>
+        <div class="project-desc">Installed ARS 408-21 radar on an autonomous vehicle pod, configured CAN data collection on Linux, and built C++/Python data pipelines for perception and navigation support. Executed real-world multi-vehicle and occlusion detection tests.</div>
+        <div class="project-tags">
+          <span class="ptag">C++</span><span class="ptag">Python</span><span class="ptag">ROS</span><span class="ptag">Linux</span><span class="ptag">CAN</span>
+        </div>
+        <a href="https://github.com/ruchithayathiraj/ARS_408_21" target="_blank" class="project-link">View on GitHub →</a>
+      </div>
+      <div class="project-card">
+        <div class="project-num">003</div>
+        <div class="project-title">Solar Energy System for Raspberry Pi in Remote Areas</div>
+        <div class="project-desc">Designed a specialized board integrating solar panels and advanced sensors to dramatically reduce Raspberry Pi power consumption. Published research in a Web of Science indexed journal (ISSN: 2319-4979).</div>
+        <div class="project-tags">
+          <span class="ptag">Hardware</span><span class="ptag">IoT</span><span class="ptag">Raspberry Pi</span><span class="ptag">Published</span>
+        </div>
+        <a href="http://www.viirj.org/specialissues/SP10/SP10.html" target="_blank" class="project-link">Read Publication →</a>
+      </div>
+      <div class="project-card">
+        <div class="project-num">004</div>
+        <div class="project-title">Personal Portfolio Website</div>
+        <div class="project-desc">Independently designed and developed this professional personal portfolio — showcasing skills in HTML, CSS, and modern design. Built to reflect ongoing technical growth and professional identity.</div>
+        <div class="project-tags">
+          <span class="ptag">HTML</span><span class="ptag">CSS</span><span class="ptag">JavaScript</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-num">005</div>
+        <div class="project-title">Obstacle Detecting Robot</div>
+        <div class="project-desc">Designed a robot using ultrasonic sensors to detect forward obstacles and change direction autonomously. Arduino-based with AI-inspired decision logic for real-time navigation.</div>
+        <div class="project-tags">
+          <span class="ptag">Arduino</span><span class="ptag">Ultrasonic Sensors</span><span class="ptag">Embedded</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-num">006</div>
+        <div class="project-title">Bluetooth Controlled Car</div>
+        <div class="project-desc">Built a Bluetooth-controlled vehicle for versatile terrain traversal. Android controller uses mobile sensors to manage car motion via Arduino, built around IoT principles.</div>
+        <div class="project-tags">
+          <span class="ptag">Arduino</span><span class="ptag">Bluetooth</span><span class="ptag">IoT</span><span class="ptag">Android</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-header reveal">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Education</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-grid reveal">
+      <div class="edu-card">
+        <div class="edu-degree">Master of Engineering<br>Electrical & Computer Engineering</div>
+        <div class="edu-school">University of Ottawa</div>
+        <div class="edu-period">Sept 2023 – Apr 2025 · Ottawa, Ontario, Canada</div>
+        <div class="edu-gpa">GPA 3.5 / 4.0</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">Bachelor of Engineering<br>Electronics & Communication Engineering</div>
+        <div class="edu-school">Visveswaraya Technological University</div>
+        <div class="edu-period">Aug 2017 – Aug 2021 · Bangalore, India</div>
+        <div class="edu-gpa">GPA 3.58 / 4.0</div>
+      </div>
+    </div>
+
+    <div class="section-header reveal" style="margin-top: 3rem;">
+      <span class="section-num" style="color: var(--accent2)">Cert</span>
+      <h3 class="section-title" style="font-size: 1.5rem;">Certifications</h3>
+      <div class="section-line"></div>
+    </div>
+    <div class="cert-grid reveal">
+      <div class="cert-card">
+        <div class="cert-title">PMP — Project Management Professional</div>
+        <div class="cert-valid">Target: 2025</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-title">SQL Associate — DataCamp</div>
+        <div class="cert-valid">Valid until Nov 2027</div>
+        <a href="https://www.datacamp.com/certificate/SQA0011474493706" target="_blank" class="cert-link">View Certificate →</a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-title">Alteryx Designer Core Certified</div>
+        <div class="cert-valid">Valid until Nov 2027</div>
+        <a href="https://www.credly.com/badges/078920cf-f8fa-4c87-ba0f-6d4e839fcf81/embedded" target="_blank" class="cert-link">View on Credly →</a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-title">PL-300 — Microsoft Power BI Data Analyst Associate</div>
+        <div class="cert-valid">Valid until Nov 2027</div>
+        <a href="https://learn.microsoft.com/en-us/users/ruchithayathirajulu-2608/credentials/a085113974755af3" target="_blank" class="cert-link">View on Microsoft →</a>
+      </div>
+    </div>
+
+    <!-- Publication -->
+    <div class="section-header reveal" style="margin-top: 3rem;">
+      <span class="section-num" style="color: var(--accent2)">Pub</span>
+      <h3 class="section-title" style="font-size: 1.5rem;">Publication</h3>
+      <div class="section-line"></div>
+    </div>
+    <div class="pub-card reveal">
+      <div class="pub-year">2021</div>
+      <div>
+        <div class="pub-title">Solar Energy for RPI in Remote Areas</div>
+        <div class="pub-venue">Web of Science indexed journal — VB International Interdisciplinary Research Journal (ISSN: 2319-4979), Part 5, pp. 1797–1804, Aug 2021.</div>
+        <a href="http://www.viirj.org/specialissues/SP10/SP10.html" target="_blank" class="pub-link">Read paper →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header reveal">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Contact</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-left reveal">
+        <h2>Let's work<br><span>together.</span></h2>
+        <p>I'm actively seeking roles in Business Analysis, Project Management, and Data Analytics. Always happy to connect with recruiters, teams, and professionals working on impactful projects.</p>
+        <div class="contact-items">
+          <a href="mailto:yathirajuluruchitha@gmail.com" class="contact-item">
+            <div class="contact-icon">✉</div>
+            <div>
+              <div class="contact-info-label">Email</div>
+              <div class="contact-info-val">yathirajuluruchitha@gmail.com</div>
+            </div>
+          </a>
+          <a href="tel:+13435589542" class="contact-item">
+            <div class="contact-icon">☎</div>
+            <div>
+              <div class="contact-info-label">Phone</div>
+              <div class="contact-info-val">+1 343 558 9542</div>
+            </div>
+          </a>
+          <a class="contact-item" style="color:inherit;">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-info-label">Location</div>
+              <div class="contact-info-val">Ottawa, Ontario, Canada</div>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/ruchitha-yathirajulu-b87555191/" target="_blank" class="contact-item">
+            <div class="contact-icon">in</div>
+            <div>
+              <div class="contact-info-label">LinkedIn</div>
+              <div class="contact-info-val">linkedin.com/in/ruchitha-yathirajulu</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="contact-right reveal">
+        <h3>Send a message</h3>
+        <div class="form-row">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-input" placeholder="Your name">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" placeholder="your@email.com">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="Tell me about the opportunity..."></textarea>
+        </div>
+        <a href="mailto:yathirajuluruchitha@gmail.com" class="btn-primary" style="display:inline-block; margin-top:0.5rem;">Send via email →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-name">Ruchitha Yathirajulu<span style="color:var(--accent)">.</span></div>
+    <div class="footer-copy">© 2025 · Built with care · Ottawa, Canada</div>
+    <div class="footer-socials">
+      <a href="https://www.linkedin.com/in/ruchitha-yathirajulu-b87555191/" target="_blank" class="footer-social">in</a>
+      <a href="mailto:yathirajuluruchitha@gmail.com" class="footer-social">✉</a>
+    </div>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    function animateCursor() {
+      cursor.style.left = mx - 6 + 'px';
+      cursor.style.top = my - 6 + 'px';
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx - 18 + 'px';
+      ring.style.top = ry - 18 + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    document.querySelectorAll('a, button, .stat-card, .skill-chip, .project-card').forEach(el => {
+      el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2)'; ring.style.opacity = '0.8'; });
+      el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; ring.style.opacity = '0.5'; });
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const expItems = document.querySelectorAll('.exp-item');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.1 });
+    [...reveals, ...expItems].forEach(el => observer.observe(el));
+
+    // Active nav link
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 200) current = s.getAttribute('id');
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+      });
+    });
+  </script>
 </body>
-
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
