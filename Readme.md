@@ -94,6 +94,7 @@ Built a complete BA deliverable set for NorthBridge Bank's digital loan platform
 
 Analysed Canada's labour market from 2019 to 2024 using Statistics Canada Table 14-10-0202-01. Built a Python pipeline to clean 2,016 rows, ran 5 SQL queries covering national trends, industry rankings, COVID-19 impact and recovery analysis, and year-over-year growth. Delivered a 5-page interactive Power BI dashboard with COVID crash and full recovery clearly visualised.
 `Python` `pandas` `SQL` `sqlite3` `Power BI` `Statistics Canada` `Data Analytics`
+
 🔗 [View on GitHub](https://github.com/ruchithayathiraj/Canada-Job-Market-Analysis)
 📊 [Live Dashboard](https://app.powerbi.com/view?r=eyJrIjoiYzYyYzE2YTAtN2ZjNC00MjFlLWIzOWMtYmE5Y2RhMTRhZTNhIiwidCI6ImQ0MWZkYWIxLTdlMTUtNGNmZC1iNWZhLTcyMDBlNTRkZWI2YiJ9)
 
