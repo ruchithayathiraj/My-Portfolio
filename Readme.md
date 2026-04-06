@@ -4,7 +4,6 @@
 
   [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ruchitha-yathirajulu-b87555191/)
   [![Portfolio](https://img.shields.io/badge/Portfolio-Live-00C9A7?style=for-the-badge&logo=github&logoColor=white)](https://ruchithayathiraj.github.io/My-Portfolio)
-  [![Email](https://img.shields.io/badge/Email-Say%20Hi-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:yathirajuluruchitha@gmail.com)
   [![Resume](https://img.shields.io/badge/Resume-Download-F59E0B?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](#)
 
 </div>
@@ -13,7 +12,7 @@
 
 ## 🙋‍♀️ About Me
 
-I'm a **Business Analyst & Data Analyst** based in **Ottawa, Canada** — originally from Bangalore, India.
+I'm a **Business/Project Analyst & Data Analyst** based in **Ottawa, Canada** — originally from Bangalore, India.
 
 I have a Master's in Electrical & Computer Engineering from the University of Ottawa and 3+ years of industry experience across business analysis, data engineering, and project coordination. Most recently I was a **BSA Intern at AIMCo** (Alberta Investment Management Corporation) in Toronto, where I automated financial workflows using SimCorp Dimension, Azure DevOps, and Power BI.
 
@@ -86,6 +85,17 @@ Built a complete BA deliverable set for NorthBridge Bank's digital loan platform
 `BRD` `Process Mapping` `User Stories` `UAT` `MoSCoW` `Draw.io` `Finance`
 
 🔗 [View on GitHub](https://github.com/ruchithayathiraj/NorthBridge_Bank_BA_CaseStudy)
+
+---
+
+### Canada Job Market Analysis — Python + SQL + Power BI
+
+> *End-to-end data analytics project using real Statistics Canada government data*
+
+Analysed Canada's labour market from 2019 to 2024 using Statistics Canada Table 14-10-0202-01. Built a Python pipeline to clean 2,016 rows, ran 5 SQL queries covering national trends, industry rankings, COVID-19 impact and recovery analysis, and year-over-year growth. Delivered a 5-page interactive Power BI dashboard with COVID crash and full recovery clearly visualised.
+`Python` `pandas` `SQL` `sqlite3` `Power BI` `Statistics Canada` `Data Analytics`
+🔗 [View on GitHub](https://github.com/ruchithayathiraj/Canada-Job-Market-Analysis)
+📊 [Live Dashboard](https://app.powerbi.com/view?r=eyJrIjoiYzYyYzE2YTAtN2ZjNC00MjFlLWIzOWMtYmE5Y2RhMTRhZTNhIiwidCI6ImQ0MWZkYWIxLTdlMTUtNGNmZC1iNWZhLTcyMDBlNTRkZWI2YiJ9)
 
 ---
 
