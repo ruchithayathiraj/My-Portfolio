@@ -2,7 +2,7 @@
 
 <div align="center">
 
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=64B5F6&center=true&vCenter=true&width=600&lines=Business+Analyst+%7C+Data+Analyst;Project+Analyst+%7C+Python+Developer;Open+to+Roles+Across+Canada+🇨🇦" alt="Typing SVG" />
+
 
   <br/><br/>
 
