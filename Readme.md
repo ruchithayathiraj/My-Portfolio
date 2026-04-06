@@ -164,18 +164,6 @@ Designed a solar-powered board to reduce Raspberry Pi power consumption using in
 
 ---
 
-## 📈 GitHub Stats
-
-<div align="center">
-
-  ![Ruchitha's GitHub Stats](https://github-readme-stats.vercel.app/api?username=ruchithayathiraj&show_icons=true&theme=tokyonight&hide_border=true&count_private=true)
-
-  ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=ruchithayathiraj&layout=compact&theme=tokyonight&hide_border=true)
-
-</div>
-
----
-
 ## 📬 Let's Connect
 
 I'm always open to connecting with recruiters, hiring managers, or anyone working in the BA / data / PM space.
