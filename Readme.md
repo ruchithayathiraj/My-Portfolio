@@ -2,10 +2,6 @@
 
 <div align="center">
 
-
-
-  <br/><br/>
-
   [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ruchitha-yathirajulu-b87555191/)
   [![Portfolio](https://img.shields.io/badge/Portfolio-Live-00C9A7?style=for-the-badge&logo=github&logoColor=white)](https://ruchithayathiraj.github.io/My-Portfolio)
   [![Email](https://img.shields.io/badge/Email-Say%20Hi-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:yathirajuluruchitha@gmail.com)
